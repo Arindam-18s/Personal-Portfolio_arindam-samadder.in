@@ -3,7 +3,12 @@ name: Mark Production Deployment
 on:
   push:
     branches:
-      - main  # Triggers whenever you push or merge to main
+      - main  # Make sure this matches your default branch name
+
+# Add these lines to fix authorization issues
+permissions:
+  deployments: write
+  contents: read
 
 jobs:
   update-github-status:
