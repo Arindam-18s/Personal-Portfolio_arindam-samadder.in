@@ -1,5 +1,5 @@
 {
-  "name": "portfolio",
+  "name": "portfolio-v2_arindam18s_",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,18 +10,16 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "framer-motion": "^14.9.0",
-    "lucide-react": "^1.66.0",
+    "@formspree/react": "^3.0.0",
+    "@icons-pack/react-simple-icons": "^13.15.1",
     "react": "^19.3.1",
     "react-dom": "^19.3.1"
   },
   "devDependencies": {
-    "@tailwindcss/vite": "^4.3.4",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "@vitejs/plugin-react": "^6.1.2",
     "oxlint": "^1.89.0",
-    "tailwindcss": "^4.3.4",
     "vite": "^8.3.5"
   }
 }

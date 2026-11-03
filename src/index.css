@@ -1,0 +1,49 @@
+/* Change to Outfit for a classier, modern look */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --bg-color: linear-gradient(135deg, #010f46, #285e7a, #11083e);
+  --dot-color: #172a45; 
+  --navy: #e6f1ff; 
+  --slate: #8892b0; 
+  --accent: #64ffda; 
+}
+
+body {
+  font-family: 'Outfit', sans-serif; /* Updated font */
+  background: var(--bg-color);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  color: var(--navy);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Adjust navbar and cards for dark mode */
+.navbar {
+  background-color: rgba(10, 25, 47, 0.85) !important;
+}
+
+.project-description, .contact-form {
+  background-color: #112240 !important; /* Light Navy for cards */
+  border-color: #233554 !important;
+}
+
+.form-group input, .form-group textarea {
+  background-color: #0a192f !important;
+  color: var(--navy) !important;
+  border-color: #233554 !important;
+}
