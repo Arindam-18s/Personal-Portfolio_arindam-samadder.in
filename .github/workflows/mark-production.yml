@@ -1,0 +1,23 @@
+name: Mark Production Deployment
+
+on:
+  push:
+    branches:
+      - main  # Make sure this matches your default branch name
+
+# Add these lines to fix authorization issues
+permissions:
+  deployments: write
+  contents: read
+
+jobs:
+  update-github-status:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create GitHub Deployment
+        uses: chrnorm/deployment-action@v2
+        id: deployment
+        with:
+          token: '${{ github.token }}'
+          environment: production
+          initial-status: success
