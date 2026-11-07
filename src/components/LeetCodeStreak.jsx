@@ -6,7 +6,7 @@ export default function LeetCodeStreak() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch('/api/leetcode?username=YOUR_LEETCODE_USERNAME')
+    fetch('/api/leetcode?username=arindamsamadder18')
       .then(res => {
         // FIX: Check if we got HTML instead of JSON (common in local Vite dev)
         const contentType = res.headers.get("content-type");
