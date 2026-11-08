@@ -6,7 +6,7 @@ export default function LeetCodeStreak() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch('/api/leetcode?username=YOUR_LEETCODE_USERNAME')
+    fetch('/api/leetcode?username=arindamsamadder18')
       .then(res => {
         const contentType = res.headers.get("content-type");
         if (!contentType || !contentType.includes("application/json")) {
