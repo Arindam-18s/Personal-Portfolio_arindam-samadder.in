@@ -150,8 +150,17 @@ function App() {
 
         <section id="leetcode" className="section fade-in">
           <h2 className="section-title"><span>02.</span> Algorithmic Consistency</h2>
-          <div className="leetcode-content">
-            <p>I believe in continuous learning and problem-solving. Here is my LeetCode submission streak over the last 6 months.</p>
+          
+          <div className="leetcode-content" style={{ 
+            background: '#112240', 
+            padding: '30px', 
+            borderRadius: '8px', 
+            border: '1px solid #233554',
+            boxShadow: '0 10px 30px -15px rgba(2,12,27,0.7)'
+          }}>
+            <p style={{ color: 'var(--slate)', marginBottom: '20px' }}>
+              I believe in continuous learning and problem-solving. Here is my LeetCode submission streak over the last 6 months.
+            </p>
             <LeetCodeStreak />
           </div>
         </section>
