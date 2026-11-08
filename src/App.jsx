@@ -69,6 +69,7 @@ function ContactForm() {
 
 function App() {
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -81,22 +82,40 @@ function App() {
   return (
     <div className="layout">
       {/* Add the conditional class here */}
-      <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
-        <div className="logo">AS.</div>
-        <ul className="nav-links">
-          <li><a href="#about"><span>01.</span> About</a></li>
-          <li><a href="#leetcode"><span>02.</span> LeetCode</a></li>
-          <li><a href="#experience"><span>03.</span> Experience</a></li>
-          <li><a href="#projects"><span>04.</span> Projects</a></li>
-          <li><a href="#contact"><span>05.</span> Contact</a></li>
-        </ul>
+        <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
+          <a href="#top" className="logo">AS.</a>
+          
+          {/* Desktop Links */}
+            <ul className={`nav-links ${menuOpen ? 'open' : ''}`}>
+              <li><a href="#about" onClick={() => setMenuOpen(false)}><span>01.</span> About</a></li>
+              <li><a href="#leetcode" onClick={() => setMenuOpen(false)}><span>02.</span> Coding</a></li>
+              <li><a href="#experience" onClick={() => setMenuOpen(false)}><span>03.</span> Academics</a></li>
+              <li><a href="#projects" onClick={() => setMenuOpen(false)}><span>04.</span> Projects</a></li>
+              <li><a href="#contact" onClick={() => setMenuOpen(false)}><span>05.</span> Contact</a></li>
+            </ul>
+
+        {/* Mobile Menu Button */}
+        <button 
+          className="mobile-menu-btn" 
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
+          <div className={`hamburger ${menuOpen ? 'open' : ''}`}></div>
+        </button>
       </nav>
 
       {/* LEFT SIDEBAR - SOCIALS */}
       <aside className="sidebar left-sidebar">
         <div className="socials">
-          <a href="https://github.com/yourusername" target="_blank" rel="noreferrer" aria-label="GitHub"><GithubIcon /></a>
-          <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noreferrer" aria-label="LinkedIn"><LinkedinIcon /></a>
+          <a href="https://github.com/Arindam-18s" target="_blank" rel="noreferrer" aria-label="GitHub"><GithubIcon /></a>
+          <a href="https://www.linkedin.com/in/arindam-samadder/" target="_blank" rel="noreferrer" aria-label="LinkedIn"><LinkedinIcon /></a>
+        </div>
+        <div className="line"></div>
+      </aside>
+
+      {/* RIGHT SIDEBAR - EMAIL */}
+      <aside className="sidebar right-sidebar">
+        <div className="email-link">
+          <a href="arindam.samadder18@gmail.com">hello@arindam.com</a>
         </div>
         <div className="line"></div>
       </aside>
@@ -108,7 +127,8 @@ function App() {
           <div className="hero-text">
             <p className="greeting">Hi, my name is</p>
             <h1 className="name">Arindam Samadder.</h1>
-            <h7 className="tagline">Aspiring Systems Developer</h7><p> — based in Kolkata, India</p>
+            <div className="tagline">Aspiring Systems Developer</div>
+            <p className="location-tag">— based in Kolkata, India</p>
             <p className="bio">
               I'm a software engineer specializing in building (and occasionally designing) exceptional digital experiences. 
               Currently, I'm focused on building accessible, human-centered products at <span className="highlight">Your Company</span>.
@@ -131,12 +151,13 @@ function App() {
               <p>Here are a few technologies I've been working with recently:</p>
               
               <ul className="skills-list">
+                <li>Python</li>
+                <li>Java</li>
                 <li>JavaScript (ES6+)</li>
-                <li>TypeScript</li>
-                <li>React</li>
-                <li>Eleventy</li>
+                <li>SQL</li>
+                <li>Express.js</li>
                 <li>Node.js</li>
-                <li>WordPress</li>
+                <li>MS-Office 365</li>
               </ul>
             </div>
             
@@ -166,15 +187,15 @@ function App() {
         </section>
 
         <section id="experience" className="section fade-in">
-          <h2 className="section-title"><span>03.</span> Where I've Worked</h2>
+          <h2 className="section-title"><span>03.</span> Where I've Collaborated</h2>
           <div className="experience-content">
             <div className="job">
-              <h3 className="role-title">Software Engineer <span className="company">@ Your Company</span></h3>
-              <p className="date">Jan 2024 - Present</p>
+              <h3 className="role-title">Data Science Intern <span className="company">@ IDEAS-TIH Indian Statistical Institute Kolkata</span></h3>
+              <p className="date">Sept. 2026 - Present</p>
               <ul className="job-duties">
                 <li>Deliver high-quality, robust production code for a diverse array of projects.</li>
-                <li>Work alongside creative directors to lead the research, development, and architecture of technical solutions.</li>
-                <li>Collaborate with designers, project managers, and other engineers to transform creative concepts into production realities.</li>
+                <li>Work alongside Fellow Researchers and Trainees to lead the research, development, and architecture of technical solutions.</li>
+                <li>Collaborate with AI, Deep Learning - Machine Learning, Data Science Researchers and other engineers to transform creative concepts into production realities.</li>
               </ul>
             </div>
           </div>
@@ -224,16 +245,24 @@ function App() {
           </p>
           <ContactForm />
         </section>
-
       </main>
-
-      {/* RIGHT SIDEBAR - EMAIL */}
-      <aside className="sidebar right-sidebar">
-        <div className="email-link">
-          <a href="mailto:hello@arindam.com">hello@arindam.com</a>
+      {/* MOBILE FOOTER LINKS */}
+      <footer className="mobile-footer">
+        <div className="mobile-socials">
+          <a href="https://github.com/Arindam-18s" target="_blank" rel="noreferrer" aria-label="GitHub">
+            <GithubIcon />
+          </a>
+          <a href="https://www.linkedin.com/in/arindam-samadder/" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+            <LinkedinIcon />
+          </a>
+          <a href="mailto:hello@arindam.com" className="mobile-email">
+            hello@arindam.com
+          </a>
         </div>
-        <div className="line"></div>
-      </aside>
+        <p className="mobile-credit">
+          Designed & Built by Arindam Samadder
+        </p>
+      </footer>
 
     </div>
   );

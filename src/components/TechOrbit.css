@@ -1,60 +1,137 @@
-.orbit-container {
+.terminal-wrapper {
   position: relative;
   width: 100%;
-  height: 400px;
   display: flex;
   justify-content: center;
   align-items: center;
-  perspective: 1000px; /* Gives the 3D depth */
+  /* Added some left margin to push it slightly away from text */
+  margin-left: 20px;
 }
 
-.orbit {
-  position: relative;
-  width: 300px;
-  height: 300px;
-  transform-style: preserve-3d;
-  animation: rotateOrbit 30s linear infinite;
-}
-
-.orbit-item {
+.glow-orb {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 60px;
-  height: 60px;
-  margin: -30px 0 0 -30px;
+  width: 600px; /* Wider glow */
+  height: 300px;
+  background: rgba(100, 255, 218, 0.12);
+  filter: blur(80px);
+  border-radius: 50%;
+  z-index: -1;
+  animation: pulseGlow 5s infinite alternate;
+}
+
+/* The Widescreen Dashboard */
+.terminal-window {
+  width: 100%;
+  max-width: 750px; /* Increased from 650px to fill the wider column */
+  height: 420px;    /* Slightly taller to balance the width */
+  background: rgba(17, 34, 64, 0.5);
+  border: 1px solid rgba(100, 255, 218, 0.2);
+  border-radius: 12px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 20px 50px -20px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Header stays the same */
+.terminal-header {
+  height: 40px;
+  background: rgba(10, 25, 47, 0.8);
+  border-bottom: 1px solid rgba(100, 255, 218, 0.1);
+  display: flex;
+  align-items: center;
+  padding: 0 15px;
+  gap: 10px;
+}
+
+.mac-buttons { display: flex; gap: 6px; }
+.dot { width: 10px; height: 10px; border-radius: 50%; }
+.dot.red { background-color: #ff5f56; }
+.dot.yellow { background-color: #ffbd2e; }
+.dot.green { background-color: #27c93f; }
+.terminal-title { font-family: monospace; font-size: 0.8rem; color: var(--slate); margin-left: 10px; }
+
+/* Dashboard Container */
+.scatter-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+/* --- MOCK ANALYTICS CHART --- */
+.mock-chart {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  height: 120px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 15px;
+  opacity: 0.15; /* Very faint so it doesn't overpower the icons */
+  padding: 0 40px;
+}
+
+.chart-bar {
+  flex: 1;
+  background: var(--accent);
+  border-radius: 4px 4px 0 0;
+  /* Add a subtle animation to the bars */
+  animation: growBar 2s ease-out forwards;
+  transform-origin: bottom;
+  transform: scaleY(0);
+}
+
+@keyframes growBar {
+  to { transform: scaleY(1); }
+}
+
+/* Floating Icons */
+.scatter-item {
+  position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgba(23, 42, 69, 0.7); /* Dark navy glass effect */
-  border-radius: 50%;
-  border: 1px solid rgba(100, 255, 218, 0.2);
-  box-shadow: 0 0 15px rgba(100, 255, 218, 0.1);
-  backdrop-filter: blur(5px);
-  /* Position each icon around the circle and add a floating bob */
-  transform: rotate(var(--angle)) translateX(140px) rotate(calc(-1 * var(--angle)));
-  animation: float 4s ease-in-out infinite alternate;
+  padding: 12px;
+  background: rgba(23, 42, 69, 0.8);
+  border: 1px solid rgba(100, 255, 218, 0.15);
+  border-radius: 14px;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 10px 20px -10px rgba(0, 0, 0, 0.5);
+  animation: floatScatter var(--duration) ease-in-out infinite alternate;
   animation-delay: var(--delay);
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  z-index: 2;
 }
 
-/* 3D Rotation for the whole ring */
-@keyframes rotateOrbit {
-  0% { transform: rotateY(0deg) rotateX(10deg); }
-  100% { transform: rotateY(360deg) rotateX(10deg); }
-}
-
-/* Floating bob for individual icons */
-@keyframes float {
-  0% { transform: rotate(var(--angle)) translateX(140px) rotate(calc(-1 * var(--angle))) translateY(0px) scale(1); }
-  100% { transform: rotate(var(--angle)) translateX(140px) rotate(calc(-1 * var(--angle))) translateY(-15px) scale(1.1); }
-}
-
-/* Hover effect to pause and expand */
-.orbit-container:hover .orbit {
+.scatter-item:hover {
   animation-play-state: paused;
-}
-.orbit-container:hover .orbit-item {
-  animation-play-state: paused;
-  box-shadow: 0 0 25px rgba(100, 255, 218, 0.4);
+  transform: scale(1.15) !important; 
   border-color: var(--accent);
+  box-shadow: 0 0 20px rgba(100, 255, 218, 0.4);
+  z-index: 10;
+}
+
+@keyframes floatScatter {
+  0% { transform: translateY(0px) rotate(0deg); }
+  100% { transform: translateY(-15px) rotate(5deg); }
+}
+
+@keyframes pulseGlow {
+  0% { transform: scale(0.9); opacity: 0.6; }
+  100% { transform: scale(1.1); opacity: 1; }
+}
+
+@media (max-width: 900px) {
+  .terminal-window {
+    height: 300px; 
+  }
+  .scatter-item {
+    transform: scale(0.8); 
+  }
 }
